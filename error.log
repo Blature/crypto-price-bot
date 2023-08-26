@@ -1,0 +1,24 @@
+[2023-08-25T16:09:11.586Z] An error occurred: TypeError [ERR_INVALID_ARG_TYPE]: The "data" argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received an instance of Cryptos
+    at Object.writeFile (node:fs:2287:5)
+    at appendFile (node:fs:2372:6)
+    at node:internal/util:411:7
+    at new Promise (<anonymous>)
+    at appendFile (node:internal/util:397:12)
+    at Timeout._onTimeout (file:///C:/Users/ASUS/Desktop/crypto-price-bot/index.js:120:15)
+[2023-08-25T16:10:12.891Z] An error occurred: TypeError [ERR_INVALID_ARG_TYPE]: The "data" argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received an instance of Cryptos
+    at Object.writeFile (node:fs:2287:5)
+    at appendFile (node:fs:2372:6)
+    at node:internal/util:411:7
+    at new Promise (<anonymous>)
+    at appendFile (node:internal/util:397:12)
+    at Timeout._onTimeout (file:///C:/Users/ASUS/Desktop/crypto-price-bot/index.js:120:15)
+[2023-08-25T16:50:11.407Z] An error occurred: ReferenceError: list is not defined
+    at Timeout._onTimeout (file:///C:/Users/ASUS/Desktop/crypto-price-bot/index.js:144:21)
+[2023-08-25T16:51:11.803Z] An error occurred: ReferenceError: list is not defined
+    at Timeout._onTimeout (file:///C:/Users/ASUS/Desktop/crypto-price-bot/index.js:144:21)
+[2023-08-25T17:20:12.306Z] An error occurred: ReferenceError: Cannot access 'price' before initialization
+    at Timeout._onTimeout (file:///C:/Users/ASUS/Desktop/crypto-price-bot/index.js:137:23)
+[2023-08-25T17:21:10.897Z] An error occurred: ReferenceError: Cannot access 'price' before initialization
+    at Timeout._onTimeout (file:///C:/Users/ASUS/Desktop/crypto-price-bot/index.js:137:23)
+[2023-08-25T17:23:11.282Z] An error occurred: ReferenceError: cry is not defined
+    at Timeout._onTimeout (file:///C:/Users/ASUS/Desktop/crypto-price-bot/index.js:142:29)
