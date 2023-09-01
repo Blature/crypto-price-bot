@@ -2,10 +2,10 @@ import axios from "axios";
 import "dotenv/config.js";
 import fs from "fs";
 import * as cron from "node-cron";
+import puppeteer from "puppeteer";
 import { DataTypes, Sequelize } from "sequelize";
 import { Telegraf } from "telegraf";
 import { promisify } from "util";
-
 const appendFileAsync = promisify(fs.appendFile);
 
 async function logErrorToFile(message, error) {
@@ -19,7 +19,20 @@ async function logErrorToFile(message, error) {
   }
 }
 
-
+async function catchUsdtPrice() {
+  const browser = await puppeteer.launch({ headless: false });
+  const page = await browser.newPage();
+  await page.goto("https://tetherland.com/");
+  await page.waitForSelector(".rightInfo");
+  const usdtPrice = await page.$eval(".sc-d9bf1c01-0.byQCJu", (element) => {
+    return element.textContent;
+  });
+  const numericString = usdtPrice.replace(/[^0-9]/g, "");
+  const numericValue = parseInt(numericString, 10);
+  const formattedValue = numericValue.toLocaleString();
+  await browser.close();
+  return formattedValue;
+}
 
 async function catchPrices(db) {
   try {
@@ -111,9 +124,10 @@ const coins = [
 ];
 
 function cronJob() {
-  cron.schedule("*/5 * * * *", async () => {
+  cron.schedule("*/10 * * * *", async () => {
+    const usdtPrice = await catchUsdtPrice();
     const price = await catchPrices();
-    await cryptos.create({ crypto: price });
+    await cryptos.create({ crypto: price, usdt: usdtPrice });
     setTimeout(async () => {
       try {
         const list = [];
