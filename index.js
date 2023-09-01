@@ -128,8 +128,9 @@ const coins = [
 ];
 
 function cronJob() {
-  cron.schedule("*/10 * * * *", async () => {
+  cron.schedule("*/1 * * * *", async () => {
     const usdtPrice = await catchUsdtPrice();
+    console.log(usdtPrice);
     const price = await catchPrices();
     await cryptos.create({ crypto: price, usdt: usdtPrice });
     setTimeout(async () => {
