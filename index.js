@@ -21,7 +21,11 @@ async function logErrorToFile(message, error) {
 
 async function catchUsdtPrice() {
   try {
-    const browser = await puppeteer.launch({ headless: "new" });
+    const browser = await puppeteer.launch({
+      headless: "new",
+      executablePath:
+        "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+    });
     const page = await browser.newPage();
     await page.goto("https://tetherland.com/");
     await page.waitForSelector(".rightInfo");
