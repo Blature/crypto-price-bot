@@ -19,6 +19,8 @@ async function logErrorToFile(message, error) {
   }
 }
 
+
+
 async function catchPrices(db) {
   try {
     const res = await axios.get(
