@@ -20,18 +20,22 @@ async function logErrorToFile(message, error) {
 }
 
 async function catchUsdtPrice() {
-  const browser = await puppeteer.launch({ headless: false });
-  const page = await browser.newPage();
-  await page.goto("https://tetherland.com/");
-  await page.waitForSelector(".rightInfo");
-  const usdtPrice = await page.$eval(".sc-d9bf1c01-0.byQCJu", (element) => {
-    return element.textContent;
-  });
-  const numericString = usdtPrice.replace(/[^0-9]/g, "");
-  const numericValue = parseInt(numericString, 10);
-  const formattedValue = numericValue.toLocaleString();
-  await browser.close();
-  return formattedValue;
+  try {
+    const browser = await puppeteer.launch({ headless: "new" });
+    const page = await browser.newPage();
+    await page.goto("https://tetherland.com/");
+    await page.waitForSelector(".rightInfo");
+    const usdtPrice = await page.$eval(".sc-d9bf1c01-0.byQCJu", (element) => {
+      return element.textContent;
+    });
+    const numericString = usdtPrice.replace(/[^0-9]/g, "");
+    const numericValue = parseInt(numericString, 10);
+    const formattedValue = numericValue.toLocaleString();
+    await browser.close();
+    return formattedValue;
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 async function catchPrices(db) {
