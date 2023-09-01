@@ -86,7 +86,7 @@ await cryptos.sync();
 // console.log(typeof price);
 // await cryptos.create({ crypto: price });
 
-const text = (cry) => {
+const text = (cry, usdt) => {
   const btc = Number(cry[0].price.toFixed(0)).toLocaleString("en-US", {
     style: "currency",
     currency: "USD",
@@ -109,7 +109,7 @@ const text = (cry) => {
     💰 DOGE  =  $${cry[9].price.toFixed(2)}
     💰 MATIC =  $${cry[10].price.toFixed(2)}
     ➖➖➖➖➖➖➖
-    💰 TETHER = 
+    💰 TETHER = ${usdt}T
     `;
 };
 
@@ -146,7 +146,7 @@ function cronJob() {
         }
         console.log(list);
 
-        bot.telegram.sendMessage("-1001980653166", text(list));
+        bot.telegram.sendMessage("-1001980653166", text(list, usdtPrice));
       } catch (err) {
         logErrorToFile("An error occurred", err);
       }
